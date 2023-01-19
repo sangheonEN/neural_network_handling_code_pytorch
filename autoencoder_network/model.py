@@ -17,7 +17,7 @@ class AE(nn.Module):
             nn.GELU(),
             nn.Dropout(self.dropout),
             nn.Linear(128, self.latent_dim),
-            nn.GELU()
+            nn.GELU(),
         )
 
         self.decoder = nn.Sequential(
@@ -25,14 +25,14 @@ class AE(nn.Module):
             nn.GELU(),
             nn.Dropout(self.dropout),
             nn.Linear(128, self.height*self.width),
-            nn.Sigmoid()
+            nn.Sigmoid(),
         )
 
     def forward(self, x, debug=False):
 
         latent_vector = self.encoder(x)
         output = self.decoder(latent_vector)
-        output = output.view(self.args.batch_size, -1, self.height, self.width)
+        output = output.view(self.args.batch_size, self.height * self.width)
 
         return output, latent_vector
 

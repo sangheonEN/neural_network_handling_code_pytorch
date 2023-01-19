@@ -28,6 +28,7 @@ class Helper:
 
     def scheduler(self):
 
-        scheduler = StepLR(self.optim, step_size=2500, gamma=0.5)
+        # total train data num 42,000. batch 32. iter/epoch = 1312
+        scheduler = StepLR(self.optim, step_size=10000, gamma=0.5)
 
         return scheduler
