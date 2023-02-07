@@ -32,7 +32,7 @@ class AE(nn.Module):
 
         latent_vector = self.encoder(x)
         output = self.decoder(latent_vector)
-        output = output.view(self.args.batch_size, self.height * self.width)
+        output = output.view(output.shape[0], self.height * self.width)
 
         return output, latent_vector
 

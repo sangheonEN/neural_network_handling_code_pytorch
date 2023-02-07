@@ -14,6 +14,7 @@ class Solver(object):
         self.args = args
         self.device = device
         self.model = model.AE(self.args)
+        self.model.resume(args.save_dir, test=False)
         self.model.to(self.device)
         self.helper = utils.Helper(self.args, self.model)
         self.optimizer = self.helper.optimizer()
@@ -21,13 +22,12 @@ class Solver(object):
         self.criterion = nn.MSELoss()
 
 
-# Trainer의 객체는 train, valid, test data와 tensorboard summary 객체
+# Trainer의 객체는 train, valid data와 tensorboard summary 객체
 class Trainer(Solver):
-    def __init__(self, args, device, summary, train_data, valid_data, test_data):
+    def __init__(self, args, device, summary, train_data, valid_data):
         super(Trainer, self).__init__(args, device)
         self.train_data = train_data
         self.valid_data = valid_data
-        self.test_data = test_data
         self.summary = summary
         self.best_val_loss = float('inf')
 

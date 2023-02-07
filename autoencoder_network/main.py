@@ -3,6 +3,7 @@ import argparse
 import torch
 import train
 from tensorboardX import SummaryWriter
+import evaluation
 
 
 # argparser generation
@@ -23,11 +24,11 @@ parser.add_argument("-class_num", default=10, type=int,
                     help="total class number")
 parser.add_argument("-height", default=28, type=int, help="img_size")
 parser.add_argument("-width", default=28, type=int, help="img_size")
-parser.add_argument("-save_dir", default="./save_ckpt",
+parser.add_argument("-save_dir", default="C:/Users/jteks/Documents/Github/neural_network_handling_code_pytorch/save_model/model_best.pth.tar",
                     type=str, help="save_model_file")
 parser.add_argument(
     "-mode_flag",
-    default="train",
+    default="inference",
     type=str,
     help="select the mode: [train], [inference]",
 )
@@ -45,7 +46,13 @@ if __name__ == "__main__":
     # Tensorboard summary
     summary = SummaryWriter()
 
-    trainer = train.Trainer(args, device, summary,
-                            train_data, valid_data, test_data)
+    if args.mode_flag == "train":
+        trainer = train.Trainer(args, device, summary,
+                                train_data, valid_data, test_data)
 
-    trainer.Train_main()
+        trainer.Train_main()
+
+    else:
+        test = evaluation.Evaluation(args, device, summary, test_data)
+        test.evaluate()
+
