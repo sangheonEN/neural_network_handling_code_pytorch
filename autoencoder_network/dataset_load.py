@@ -6,12 +6,13 @@ import torchvision.transforms as transforms
 
 def data_load():
 
-    transform = transforms.Compose(
-        [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
+    # transform = transforms.Compose(
+    #     [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]) # 이걸 적용하니까 오히려 학습 되지 않음. 수렴하지 않음.
+    transform = transforms.Compose([transforms.ToTensor()])
     trainset = tv.datasets.MNIST(
-        root='./autoencoder_network/data',  train=True, download=True, transform=transform)
+        root='./data',  train=True, download=True, transform=transform)
     test_data = tv.datasets.MNIST(
-        root='./autoencoder_network/data', train=False, download=True, transform=transform)
+        root='./data', train=False, download=True, transform=transform)
 
     m = len(trainset)
 

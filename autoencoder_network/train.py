@@ -61,13 +61,15 @@ class Trainer(Solver):
             y = x.view(-1, self.args.height*self.args.width).to(self.device)
             label = label.to(self.device)
 
+            self.optimizer.zero_grad()
+
             output, latent_vector = self.model(x)
 
             # loss는 MSE로 자기자신과의 PIXEL VALUE 오차를 줄이도록 학습!
             loss = self.criterion(output, y)
-            self.optimizer.zero_grad()
             loss.backward()
             self.optimizer.step()
+            self.scheduler.step()
 
             self.total_train_loss += loss.item()
 
@@ -88,6 +90,7 @@ class Trainer(Solver):
 
     def valid(self, valid_loader):
 
+        # dropout할때 중요!
         self.model.eval()
         self.total_val_loss = 0
 

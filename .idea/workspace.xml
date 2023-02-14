@@ -3,18 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="33604ac0-1cc2-4ae4-accc-4f0fe758425e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autoencoder_network/dataset_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoencoder_network/dataset_load.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/MNIST/raw/t10k-images-idx3-ubyte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/MNIST/raw/t10k-images-idx3-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/MNIST/raw/t10k-labels-idx1-ubyte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/MNIST/raw/t10k-labels-idx1-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/MNIST/raw/train-images-idx3-ubyte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/MNIST/raw/train-images-idx3-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/MNIST/raw/train-labels-idx1-ubyte" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/MNIST/raw/train-labels-idx1-ubyte.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/runs/Jan19_16-48-57_LeeSangHeon/events.out.tfevents.1674114537.LeeSangHeon" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/checkpoint.pth.tar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_model/model_best.pth.tar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/evaluation.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoencoder_network/evaluation.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +35,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DeeplearningNetworkStudy/lee_sang_heon" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
