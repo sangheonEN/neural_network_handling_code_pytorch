@@ -9,9 +9,9 @@ def data_load():
     transform = transforms.Compose(
         [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
     trainset = tv.datasets.MNIST(
-        root='./data',  train=True, download=True, transform=transform)
+        root='./autoencoder_network/data',  train=True, download=True, transform=transform)
     test_data = tv.datasets.MNIST(
-        root='./data', train=False, download=True, transform=transform)
+        root='./autoencoder_network/data', train=False, download=True, transform=transform)
 
     m = len(trainset)
 
