@@ -4,7 +4,7 @@ import torch
 import train
 from tensorboardX import SummaryWriter
 import evaluation
-
+# 참고하기 https://alexanderfabisch.github.io/t-sne-in-scikit-learn.html
 
 # argparser generation
 parser = argparse.ArgumentParser()
@@ -26,6 +26,7 @@ parser.add_argument("-height", default=28, type=int, help="img_size")
 parser.add_argument("-width", default=28, type=int, help="img_size")
 parser.add_argument("-save_dir", default="./save_model/model_best.pth.tar",
                     type=str, help="save_model_file")
+parser.add_argument("-mnist_data_flag", default=False, help="True: mnist, False: Fashion_mnist")
 parser.add_argument(
     "-mode_flag",
     default="inference",
@@ -37,8 +38,8 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
 
-    # Shape: N, C. Type: Tensor
-    train_data, valid_data, test_data = dataset_load.data_load()
+    # Shape: N, C. Type: Tensor, basic_mnist_flag = False, Fashion MNIST
+    train_data, valid_data, test_data = dataset_load.data_load(basic_mnist_flag=args.mnist_data_flag)
 
     # Use GPU if available
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -53,6 +54,6 @@ if __name__ == "__main__":
         trainer.Train_main()
 
     else:
-        test = evaluation.Evaluation(args, device, summary, test_data)
+        test = evaluation.Evaluation(args, device, summary, test_data, valid_data)
         test.evaluate()
 

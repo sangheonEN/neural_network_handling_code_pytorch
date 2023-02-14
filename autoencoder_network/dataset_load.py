@@ -4,20 +4,24 @@ import torchvision as tv
 import torchvision.transforms as transforms
 
 
-def data_load():
+def data_load(basic_mnist_flag=True):
 
     # transform = transforms.Compose(
     #     [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]) # 이걸 적용하니까 오히려 학습 되지 않음. 수렴하지 않음.
-    transform = transforms.Compose([transforms.ToTensor()])
-    trainset = tv.datasets.MNIST(
-        root='./data',  train=True, download=True, transform=transform)
-    test_data = tv.datasets.MNIST(
-        root='./data', train=False, download=True, transform=transform)
+
+    if basic_mnist_flag == True:
+        transform = transforms.Compose([transforms.ToTensor()])
+        trainset = tv.datasets.MNIST(root='./data',  train=True, download=True, transform=transform)
+        test_data = tv.datasets.MNIST(root='./data', train=False, download=True, transform=transform)
+    else:
+        transform = transforms.Compose([transforms.ToTensor()])
+        trainset = tv.datasets.FashionMNIST(root='./data', train=True, download=True, transform=transform)
+        test_data = tv.datasets.FashionMNIST(root='./data', train=False, download=True, transform=transform)
+
 
     m = len(trainset)
 
-    train_data, valid_data = random_split(
-        trainset, [int(m-m*0.2), int(m*0.2)])
+    train_data, valid_data = random_split(trainset, [int(m-m*0.2), int(m*0.2)])
 
     return train_data, valid_data, test_data
 

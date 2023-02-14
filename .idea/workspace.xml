@@ -3,7 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="33604ac0-1cc2-4ae4-accc-4f0fe758425e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/dataset_load.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoencoder_network/dataset_load.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/autoencoder_network/evaluation.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoencoder_network/evaluation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/autoencoder_network/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_22-50-07_LeeSangHeon/events.out.tfevents.1675777807.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-01-33_LeeSangHeon/events.out.tfevents.1675778493.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-03-11_LeeSangHeon/events.out.tfevents.1675778591.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-03-37_LeeSangHeon/events.out.tfevents.1675778617.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-07-50_LeeSangHeon/events.out.tfevents.1675778870.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-13-24_LeeSangHeon/events.out.tfevents.1675779204.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-15-06_LeeSangHeon/events.out.tfevents.1675779306.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-20-01_LeeSangHeon/events.out.tfevents.1675779601.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-20-44_LeeSangHeon/events.out.tfevents.1675779644.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-22-38_LeeSangHeon/events.out.tfevents.1675779758.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-30-27_LeeSangHeon/events.out.tfevents.1675780227.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-32-26_LeeSangHeon/events.out.tfevents.1675780346.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-33-47_LeeSangHeon/events.out.tfevents.1675780427.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-35-25_LeeSangHeon/events.out.tfevents.1675780525.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-42-56_LeeSangHeon/events.out.tfevents.1675780976.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-51-46_LeeSangHeon/events.out.tfevents.1675781506.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-52-59_LeeSangHeon/events.out.tfevents.1675781579.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-54-32_LeeSangHeon/events.out.tfevents.1675781672.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-55-13_LeeSangHeon/events.out.tfevents.1675781713.LeeSangHeon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/autoencoder_network/runs/Feb07_23-56-18_LeeSangHeon/events.out.tfevents.1675781778.LeeSangHeon" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +59,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../DeeplearningNetworkStudy/lee_sang_heon" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JeongSeungHyun\Documents\GitHub\neural_network_handling_code_pytorch\autoencoder_network\save_model" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -81,5 +108,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/autoencoder_network/evaluation.py</url>
+          <line>133</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

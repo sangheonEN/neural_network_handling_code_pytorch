@@ -13,7 +13,8 @@ import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import cv2
-
+import os
+from PIL import Image
 
 
 # 학습 모델과 학습에 요구되는 lr스케줄러, 모델 파라미터를 가지는 class
@@ -33,10 +34,11 @@ class Solver(object):
 
 # Trainer의 객체는 train, valid, test data와 tensorboard summary 객체
 class Evaluation(Solver):
-    def __init__(self, args, device, summary, test_data):
+    def __init__(self, args, device, summary, test_data, valid_data):
         super(Evaluation, self).__init__(args, device)
         self.test_data = test_data
         self.summary = summary
+        self.valid_data = valid_data
 
 
     def input_output_visualization(self, input_arr, output_arr):
@@ -83,29 +85,17 @@ class Evaluation(Solver):
     def tsne(self, z, y, input, output):
         # perplexity: manifold learning의 nearest neighbors 갯수에 사용되는 값을 뜻합니다. 일반적으로 더 큰 데이터 셋은 보통 더 큰 perplexity 값을 필요. (5~50 사이의 값으로 실험)
         # verbose: [1: True, 0: False]TSNE가 진행 결과 나오게 할 것인지 결정하는 파라미터.
-        tsne = TSNE(n_components=3, verbose=1, n_iter=300, perplexity=5)
+        tsne = TSNE(n_components=3, verbose=2, n_iter=300, perplexity=20)
         z = z.to('cpu').detach().numpy()
         y = y.to('cpu').detach().numpy()
         y = y[:6000]
         tsne_v = tsne.fit_transform(z[:6000])
 
-        self.visualization(tsne_v, y)
+        self.tsne_visualization(tsne_v, y)
         self.input_output_visualization(input, output)
 
 
-    def visualization(self, tsne_v, y, flag_2dim = False):
-        CLASSES = {
-            0: '0',
-            1: '1',
-            2: '2',
-            3: '3',
-            4: '4',
-            5: '5',
-            6: '6',
-            7: '7',
-            8: '8',
-            9: '9'
-        }
+    def tsne_visualization(self, tsne_v, y, flag_2dim = False):
 
         if flag_2dim == True:
             # vmin = tsne_v.max()
@@ -131,6 +121,36 @@ class Evaluation(Solver):
             # plt.colorbar()
             plt.show()
 
+    def cos_similarity_vis(self, target_input, target_label, cos_output_arr, cos_total_label, cos_similarity):
+
+        if not os.path.exists("./cos_similarity_result"):
+            os.makedirs("./cos_similarity_result")
+
+        print(f"target label: {target_label}")
+        print(f"total_label: {cos_total_label[:20]}")
+        print(f"cos_similarity: {cos_similarity[:20]}")
+
+        # plot parameters
+        cols, rows = 5, 4
+        fig2, axs2 = plt.subplots(rows, cols)
+        inputs = []
+
+
+        plt.imsave("./cos_similarity_result/target_input.png", np.array(target_input).reshape(28, 28), cmap='gray')
+
+        for r in range(rows):
+            for c in range(cols):
+                axs2[r, c].set(yticklabels=[])
+                axs2[r, c].set(xticklabels=[])
+                axs2[r, c].tick_params(left=False)
+                axs2[r, c].tick_params(right=False)
+                axs2[r, c].tick_params(bottom=False)
+                inputs.append(axs2[r, c].imshow(cos_output_arr[r+c].reshape(28, 28, 1), cmap='gray'))
+                # axs[r, c].label_outer()
+
+        fig2.savefig("./cos_similarity_result/cos_similarity_output_result.png")
+
+
 
     def evaluate(self):
 
@@ -141,10 +161,13 @@ class Evaluation(Solver):
         test_loader = DataLoader(
             self.test_data, batch_size=self.args.batch_size, shuffle=False)
 
-        self.test(test_loader)
+        valid_loader = DataLoader(
+            self.valid_data, batch_size=self.args.batch_size, shuffle=False)
+
+        self.test(test_loader, valid_loader)
 
 
-    def test(self, test_loader):
+    def test(self, test_loader, valid_loader):
         self.model.eval()
         total_label = []
         total_latent_vector = []
@@ -168,5 +191,23 @@ class Evaluation(Solver):
         input_arr = torch.cat(input_arr, dim=0)
         output_arr = torch.cat(output_arr, dim=0)
 
-        self.tsne(total_latent_vector, total_label, input_arr, output_arr)
+        # cos 유사도를 비교할 target data를 validation data에서 하나 추출함.
+        # target_output[0], target_lv[0] -> batch 중 첫번째 데이터를 사용
+        target_data = next(iter(valid_loader))
+        target_input = target_data[0]
+        target_label = target_data[1]
+        target_output, target_lv = self.model(target_input.view(-1, self.args.height*self.args.width).to(self.device))
+
+        # test data 전체의 latent vector와 target latent vector의 cos similarity를 구한다.
+        test_latent_vec = total_latent_vector
+        target_latent_vec = target_lv[0]
+        # 패키지 사용하면, cos_similarity = torch.nn.functional.cosine_similarity(a.unsqueeze(1), b.unsqueeze(0), dim=2)
+        cos_similarity = (torch.sum((test_latent_vec * target_latent_vec), 1)) / ((torch.sum(test_latent_vec**2, 1)**.5 * torch.sum(target_latent_vec**2)**.5))
+        # output과 label 데이터를 cos similarity 오름차순 기준으로 정렬하기 위해서, 유사도 배열의 오름차순 정렬된 index 추출 (유사도가 높은 순서대로 정렬된 index를 뽑음)
+        index = np.argsort(cos_similarity.cpu().detach().numpy())[::-1]
+        cos_output_arr = torch.tensor((output_arr.cpu().detach().numpy()[index]))
+        cos_total_label = torch.tensor((total_label.cpu().detach().numpy()[index]))
+
+        # self.tsne(total_latent_vector, total_label, input_arr, output_arr)
+        self.cos_similarity_vis(target_input[0], target_label[0], cos_output_arr, cos_total_label, np.sort(cos_similarity.cpu().detach().numpy())[::-1])
 
