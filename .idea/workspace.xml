@@ -29,12 +29,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/jteks/Documents/Github/neural_network_handling_code_pytorch"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/jteks/Documents/Github/for_coding_test/coding_test&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\JeongSeungHyun\Documents\GitHub\neural_network_handling_code_pytorch\autoencoder_network\save_model" />
@@ -79,6 +79,7 @@
       <updated>1675775668918</updated>
       <workItem from="1675775670777" duration="6806000" />
       <workItem from="1676461298120" duration="868000" />
+      <workItem from="1676463143741" duration="11000" />
     </task>
     <servers />
   </component>
