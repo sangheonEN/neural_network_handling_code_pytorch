@@ -208,6 +208,6 @@ class Evaluation(Solver):
         cos_output_arr = torch.tensor((output_arr.cpu().detach().numpy()[index]))
         cos_total_label = torch.tensor((total_label.cpu().detach().numpy()[index]))
 
-        # self.tsne(total_latent_vector, total_label, input_arr, output_arr)
-        self.cos_similarity_vis(target_input[0], target_label[0], cos_output_arr, cos_total_label, np.sort(cos_similarity.cpu().detach().numpy())[::-1])
+        self.tsne(total_latent_vector, total_label, input_arr, output_arr)
+        # self.cos_similarity_vis(target_input[0], target_label[0], cos_output_arr, cos_total_label, np.sort(cos_similarity.cpu().detach().numpy())[::-1])
 
